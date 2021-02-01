@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.pj.sys.dao.SysNoticeDao">
+
+    <!--mybatis框架中在系统启动时，会对映射文件中的内容进行解析，每个元素
+    会封装为一个MappedStatement对象,多个这样的对象会存储到map集合，key为元素naemspace+id,
+    值为MappedStatement对象 Map<String,MappedStatement>-->
+    <insert id="insertNotice" parameterType="com.cy.pj.sys.pojo.SysNotice">
+        insert into sys_notice
+        (title,type,content,status,remark,
+         createdTime,modifiedTime,createdUser,modifiedUser)
+        values
+        (#{title},#{type},#{content},#{status},#{remark},
+         now(),now(),#{createdUser},#{modifiedUser})
+    </insert>
+
+    <update id="updateNotice" parameterType="com.cy.pj.sys.pojo.SysNotice">
+      update sys_notice
+      set title=#{title},
+          content=#{content},
+          type=#{type},
+          status=#{status},
+          remark=#{remark},
+          modifiedTime=now(),
+          modifiedUser=#{modifiedUser}
+      where id=#{id}
+    </update>
+
+    <delete id="deleteById">
+      delete from sys_notice
+      <where>
+        <if test="ids!=null and ids.length>0">
+          id in
+          <!-- foreach 用于迭代一个数据或集合 -->
+          <foreach collection="ids" open="(" close=")" separator="," item="id">
+              #{id}
+          </foreach>
+        </if>
+        or 1=2
+      </where>
+    </delete>
+    <select id="selectNotices" resultType="com.cy.pj.sys.pojo.SysNotice"
+            parameterType="com.cy.pj.sys.pojo.SysNotice">
+      select *
+      from sys_notice
+      <where>
+        1=1
+        <if test="title!=null and title!=''">
+          and title like concat("%",#{title},"%")
+        </if>
+        <if test="modifiedUser!=null and modifiedUser!=''">
+          and modifiedUser like concat("%",#{modifiedUser},"%")
+        </if>
+        <if test="type!=null and type!=''">
+          and type=#{type}
+        </if>
+        order by createdTime desc
+      </where>
+    </select>
+
+</mapper>
