@@ -1,4 +1,4 @@
-package com.cy.java.aoi.reflect;
+package com.cy.java.api.reflect;
 
 import java.lang.annotation.*;
 
@@ -20,7 +20,7 @@ public class AnnotationTests {
     public static void main(String[] args) throws Exception {
         //检测ClassA 上是否有@Component注解描述
         //1.获取类的字节码对象
-        Class<?> cls = Class.forName("com.cy.java.aoi.reflect.ClassA");
+        Class<?> cls = Class.forName("com.cy.java.api.reflect.ClassA");
         //2.判定对象上是否有@Component注解
         boolean flag = cls.isAnnotationPresent(Component.class);
         System.out.println(flag);//true

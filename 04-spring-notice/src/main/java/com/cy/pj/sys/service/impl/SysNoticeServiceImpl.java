@@ -1,6 +1,7 @@
 package com.cy.pj.sys.service.impl;
 
 import com.cy.pj.common.annotation.RequiredLog;
+import com.cy.pj.common.annotation.RequiredTime;
 import com.cy.pj.sys.dao.SysNoticeDao;
 import com.cy.pj.sys.pojo.SysNotice;
 import com.cy.pj.sys.service.SysNoticeService;
@@ -38,6 +39,8 @@ public class SysNoticeServiceImpl implements SysNoticeService {
     @RequiredLog(operation = "查询公告列表")
     @Override
     public List<SysNotice> findNotices(SysNotice notice) {
+        String tName = Thread.currentThread().getName();
+        System.out.println("SysNoticeService.findNotices.threadName="+tName);
 //        log.debug("start: {}",System.currentTimeMillis());//这里的{}表示占位符
         List<SysNotice> list = sysNoticeDao.selectNotices(notice);
 //        log.debug("end: {}",System.currentTimeMillis());
@@ -55,12 +58,16 @@ public class SysNoticeServiceImpl implements SysNoticeService {
         return rows;
     }
 
+    //@RequiredCaches
+    @RequiredLog(operation = "基于id查询通知")
+    @RequiredTime
     @Override
     public SysNotice findById(Long id) {
         SysNotice notice = sysNoticeDao.selectById(id);
         return notice;
     }
 
+    @RequiredLog(operation = "修改公告记录")
     @Override
     public int updateNotice(SysNotice notice) {
         int rows = sysNoticeDao.updateNotice(notice);

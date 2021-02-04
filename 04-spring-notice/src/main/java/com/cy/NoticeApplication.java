@@ -1,10 +1,12 @@
 package com.cy;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
  * 启动类在运行时的作用：
@@ -17,6 +19,8 @@ import org.springframework.context.annotation.ComponentScan;
  * JVM 参数分析
  * 1、检测类的加载：-XX:+TraceClassLoading
  */
+//@MapperScan("com.cy.pj.sys.dao")
+@EnableAsync //此注解用于告诉springboot。启动时初始化一个线程池(ThreadPoolExecutor)
 @SpringBootApplication
 public class NoticeApplication {//Object.class
 

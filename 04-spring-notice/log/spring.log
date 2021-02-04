@@ -1,26 +1,12 @@
-2021-01-29 14:18:16.236  INFO 1732 --- [main] com.cy.pj.sys.service.LogTests           : Starting LogTests using Java 11 on LAPTOP-FF0GARER with PID 1732 (started by 王昌峰 in E:\新建文件夹\工作\达内学习\java学习\04学习\GitCGBIII2011Projects\04-spring-notice)
-2021-01-29 14:18:16.237 DEBUG 1732 --- [main] com.cy.pj.sys.service.LogTests           : Running with Spring Boot v2.4.1, Spring v5.3.2
-2021-01-29 14:18:16.238  INFO 1732 --- [main] com.cy.pj.sys.service.LogTests           : No active profile set, falling back to default profiles: default
-2021-01-29 14:18:16.818  INFO 1732 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2021-01-29 14:18:16.875  INFO 1732 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 50 ms. Found 0 JDBC repository interfaces.
-2021-01-29 14:18:18.016  INFO 1732 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2021-01-29 14:18:19.773  INFO 1732 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2021-01-29 14:18:19.916  INFO 1732 --- [main] com.cy.pj.sys.service.LogTests           : Started LogTests in 4.112 seconds (JVM running for 5.401)
-2021-01-29 14:18:20.375  WARN 1732 --- [main] com.cy.pj.sys.service.LogTests           : log.level.warn
-2021-01-29 14:18:20.375  INFO 1732 --- [main] com.cy.pj.sys.service.LogTests           : log.level.info
-2021-01-29 14:18:20.376 DEBUG 1732 --- [main] com.cy.pj.sys.service.LogTests           : log.level.debug
-2021-01-29 14:18:20.376 ERROR 1732 --- [main] com.cy.pj.sys.service.LogTests           : log.level.error
-2021-01-29 14:18:20.395  INFO 1732 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2021-01-29 14:18:20.410  INFO 1732 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2021-01-29 14:21:03.537  INFO 11868 --- [main] com.cy.pj.sys.service.LogTests           : Starting LogTests using Java 11 on LAPTOP-FF0GARER with PID 11868 (started by 王昌峰 in E:\新建文件夹\工作\达内学习\java学习\04学习\GitCGBIII2011Projects\04-spring-notice)
-2021-01-29 14:21:03.541  INFO 11868 --- [main] com.cy.pj.sys.service.LogTests           : No active profile set, falling back to default profiles: default
-2021-01-29 14:21:04.136  INFO 11868 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2021-01-29 14:21:04.193  INFO 11868 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 49 ms. Found 0 JDBC repository interfaces.
-2021-01-29 14:21:05.389  INFO 11868 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2021-01-29 14:21:07.182  INFO 11868 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2021-01-29 14:21:07.309  INFO 11868 --- [main] com.cy.pj.sys.service.LogTests           : Started LogTests in 4.184 seconds (JVM running for 5.52)
-2021-01-29 14:21:07.778  WARN 11868 --- [main] com.cy.pj.sys.service.LogTests           : log.level.warn
-2021-01-29 14:21:07.778  INFO 11868 --- [main] com.cy.pj.sys.service.LogTests           : log.level.info
-2021-01-29 14:21:07.779 ERROR 11868 --- [main] com.cy.pj.sys.service.LogTests           : log.level.error
-2021-01-29 14:21:07.796  INFO 11868 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2021-01-29 14:21:07.810  INFO 11868 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-02-03 09:06:30.817  INFO 1804 --- [main] com.cy.JSONTests                         : Starting JSONTests using Java 11 on LAPTOP-FF0GARER with PID 1804 (started by 王昌峰 in E:\新建文件夹\工作\达内学习\java学习\04学习\GitCGBIII2011Projects\04-spring-notice)
+2021-02-03 09:06:30.839 DEBUG 1804 --- [main] com.cy.JSONTests                         : Running with Spring Boot v2.4.1, Spring v5.3.2
+2021-02-03 09:06:30.843  INFO 1804 --- [main] com.cy.JSONTests                         : No active profile set, falling back to default profiles: default
+2021-02-03 09:06:33.130  INFO 1804 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2021-02-03 09:06:33.236  INFO 1804 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 94 ms. Found 0 JDBC repository interfaces.
+2021-02-03 09:06:36.841  INFO 1804 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-03 09:06:38.053  INFO 1804 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-02-03 09:06:41.131  INFO 1804 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-02-03 09:06:41.415  INFO 1804 --- [main] com.cy.JSONTests                         : Started JSONTests in 11.704 seconds (JVM running for 14.771)
+2021-02-03 09:06:42.555  INFO 1804 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-03 09:06:42.558  INFO 1804 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-02-03 09:06:42.580  INFO 1804 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

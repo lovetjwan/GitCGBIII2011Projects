@@ -61,6 +61,15 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper-spring-boot-starter -->
+        <!--添加pageHelper，此依赖中的api封装了mybatis中分页查询操作
+        其原理：当我们执行sql查询时，假如我们调用了PageHelper.startPage()方法，
+        底层会在mybatis层面启动一拦截器，在拦截器中对sql查询进行拦截，拦截到sql，在对sql进行处理-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.3.0</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>

@@ -1,9 +1,7 @@
-package com.cy.java.aoi.reflect;
+package com.cy.java.api.reflect;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.Arrays;
 
 public class PackageTests {
