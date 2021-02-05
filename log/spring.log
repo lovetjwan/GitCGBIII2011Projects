@@ -43,3 +43,21 @@
 2021-02-04 09:26:53.465 DEBUG 4548 --- [db-service-task-2] com.cy.pj.sys.dao.SysLogDao.insertLog    : ==>  Preparing: insert into sys_logs (username,operation,method,params, time,ip,status,error,createdTime) values (?,?,?,?, ?,?,?,?,?)
 2021-02-04 09:26:53.467 DEBUG 4548 --- [db-service-task-2] com.cy.pj.sys.dao.SysLogDao.insertLog    : ==> Parameters: tony(String), 查询公告列表(String), com.cy.pj.sys.service.impl.SysNoticeServiceImpl.findNotices(String), [{"id":null,"title":null,"type":null,"content":null,"status":null,"createdTime":null,"modifiedTime":null,"createdUser":null,"modifiedUser":null,"remark":null}](String), 10(Long), 202.106.0.29(String), 1(Integer), null, 2021-02-04 09:26:53.463(Timestamp)
 2021-02-04 09:26:53.506 DEBUG 4548 --- [db-service-task-2] com.cy.pj.sys.dao.SysLogDao.insertLog    : <==    Updates: 1
+2021-02-04 19:41:51.988  INFO 14412 --- [restartedMain] com.cy.NoticeApplication                 : Starting NoticeApplication using Java 11 on LAPTOP-FF0GARER with PID 14412 (E:\新建文件夹\工作\达内学习\java学习\04学习\GitCGBIII2011Projects\04-spring-notice\target\classes started by 王昌峰 in E:\新建文件夹\工作\达内学习\java学习\04学习\GitCGBIII2011Projects)
+2021-02-04 19:41:51.991 DEBUG 14412 --- [restartedMain] com.cy.NoticeApplication                 : Running with Spring Boot v2.4.1, Spring v5.3.2
+2021-02-04 19:41:51.991  INFO 14412 --- [restartedMain] com.cy.NoticeApplication                 : No active profile set, falling back to default profiles: default
+2021-02-04 19:41:52.048  INFO 14412 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-02-04 19:41:52.048  INFO 14412 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-02-04 19:41:53.228  INFO 14412 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2021-02-04 19:41:53.291  INFO 14412 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58 ms. Found 0 JDBC repository interfaces.
+2021-02-04 19:41:54.129  INFO 14412 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-02-04 19:41:54.140  INFO 14412 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-02-04 19:41:54.140  INFO 14412 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-02-04 19:41:54.284  INFO 14412 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-02-04 19:41:54.284  INFO 14412 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2235 ms
+2021-02-04 19:41:55.002  INFO 14412 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-04 19:41:55.358  INFO 14412 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-02-04 19:41:55.698  INFO 14412 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-02-04 19:41:55.892  INFO 14412 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-02-04 19:41:55.918  INFO 14412 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-02-04 19:41:55.928  INFO 14412 --- [restartedMain] com.cy.NoticeApplication                 : Started NoticeApplication in 4.498 seconds (JVM running for 7.284)
