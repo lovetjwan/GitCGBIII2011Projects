@@ -4,6 +4,7 @@ import com.cy.pj.common.pojo.Node;
 import com.cy.pj.sys.dao.SysMenuDao;
 import com.cy.pj.sys.pojo.SysMenu;
 import com.cy.pj.sys.service.SysMenuService;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -36,7 +37,7 @@ public class SysMenuServiceImpl implements SysMenuService {
     }
 
 
-    @CacheEvict("sysMenu")
+    @CacheEvict(value = "sysMenu",allEntries = true)
     @Override
     public int saveMenu(SysMenu entity) {
         return sysMenuDao.insertMenu(entity);
@@ -48,7 +49,7 @@ public class SysMenuServiceImpl implements SysMenuService {
      * @param entity
      * @return
      */
-    @CacheEvict("sysMenu")
+    @CacheEvict(value = "sysMenu",allEntries = true,beforeInvocation = false)
     @Override
     public int updateMenu(SysMenu entity) {
         return sysMenuDao.updateMenu(entity);

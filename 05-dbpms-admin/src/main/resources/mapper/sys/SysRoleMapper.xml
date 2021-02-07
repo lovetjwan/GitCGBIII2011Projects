@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cy.pj.sys.dao.SysRoleDao">
+    <select id="selectRoles" resultType="com.cy.pj.sys.pojo.SysRole">
+      select id,name,remark,createdTime,modifiedTime,createdUser,modifiedUser
+      from sys_roles
+      <where>
+          <if test="name!=null and name!=''">
+              name like concat("%",#{name},"%")
+          </if>
+      </where>
+      order by createdTime desc
+    </select>
+    <select id="selectById" resultType="com.cy.pj.sys.pojo.SysRole">
+
+    </select>
+    <!--
+    1、useGeneratedKeys="true" 获取insert操作时写入到数据库的自增主键值
+    2、keyProperty="id" 将自增主键值赋值给参数对象的id属性
+    -->
+    <insert id="insertRole"
+            parameterType="com.cy.pj.sys.pojo.SysRole"
+            useGeneratedKeys="true"
+            keyProperty="id">
+      insert into sys_roles
+      (name,remark,createdTime,modifiedTime,createdUser,modifiedUser)
+      values
+      (#{name},#{remark},now(),now(),#{createdUser},#{modifiedUser})
+    </insert>
+    <update id="updateRole">
+
+    </update>
+</mapper>
