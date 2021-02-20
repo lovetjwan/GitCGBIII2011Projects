@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class SysRole implements Serializable {
@@ -14,7 +15,7 @@ public class SysRole implements Serializable {
     /**角色名称*/
     private String name;
     /**菜单id*/
-    private Integer[] menuIds;
+    private List<Integer> menuIds;
     /**备注*/
     private String remark;
     /**创建时间*/

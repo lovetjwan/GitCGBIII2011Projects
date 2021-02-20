@@ -4,49 +4,49 @@
 <mapper namespace="com.cy.pj.sys.dao.SysMenuDao">
 
     <select id="selectMenus" resultType="com.cy.pj.sys.pojo.SysMenu">
-      select c.*,p.name parentName
-      from sys_menus c left join sys_menus p on c.parentId=p.id
+        select c.*,p.name parentName
+        from sys_menus c left join sys_menus p on c.parentId=p.id
     </select>
 
     <insert id="insertMenu">
-      insert into sys_menus
-      (name,
-       type,
-       url,
-       sort,
-       parentId,
-       permission,
-       remark,
-       createdTime,
-       modifiedTime,
-       createdUser,
-       modifiedUser)
-      values
-      (#{name},
-       #{type},
-       #{url},
-       #{sort},
-       #{parentId},
-       #{permission},
-       #{remark},
-       now(),
-       now(),
-       #{createdUser},
-       #{modifiedUser})
+        insert into sys_menus
+        (name,
+         type,
+         url,
+         sort,
+         parentId,
+         permission,
+         remark,
+         createdTime,
+         modifiedTime,
+         createdUser,
+         modifiedUser)
+        values
+        (#{name},
+         #{type},
+         #{url},
+         #{sort},
+         #{parentId},
+         #{permission},
+         #{remark},
+         now(),
+         now(),
+         #{createdUser},
+         #{modifiedUser})
     </insert>
 
     <update id="updateMenu">
-      update sys_menus
-      set name = #{name},
-          type = #{type},
-          url = #{url},
-          sort = #{sort},
-          parentId = #{parentId},
-          permission = #{permission},
-          remark = #{remark},
-          modifiedTime = now(),
-          modifiedUser = #{modifiedUser}
-      where id=#{id}
+        update sys_menus
+        set name = #{name},
+            type = #{type},
+            url = #{url},
+            sort = #{sort},
+            parentId = #{parentId},
+            permission = #{permission},
+            remark = #{remark},
+            modifiedTime = now(),
+            modifiedUser = #{modifiedUser}
+        where id=#{id}
     </update>
 
 </mapper>
