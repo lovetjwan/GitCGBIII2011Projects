@@ -2,6 +2,7 @@ package com.cy.pj.sys.dao;
 
 import com.cy.pj.sys.pojo.SysUser;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
@@ -52,4 +53,12 @@ public interface SysUserDao {
      * @return
      */
     SysUser selectById(Integer id);
+
+    /**
+     * 基于用户名查询用户信息（登录时需要这个数据）
+     * @param username
+     * @return
+     */
+    @Select("select *from sys_user where username=#{username}")
+    SysUser selectUserByUsername(String username);
 }
