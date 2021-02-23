@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * 定义用于操作菜单表的数据访问对象
@@ -41,5 +42,12 @@ public interface SysMenuDao {
      * @return 更新的行数
      */
     int updateMenu(SysMenu menu);
+
+    /**
+     * 基于用户id查询菜单授权标识（permission）
+     * @param userId
+     * @return
+     */
+    Set<String> selectUserPermissions(Integer userId);
 
 }

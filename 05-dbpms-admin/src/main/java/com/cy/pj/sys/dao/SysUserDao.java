@@ -59,6 +59,8 @@ public interface SysUserDao {
      * @param username
      * @return
      */
-    @Select("select *from sys_user where username=#{username}")
+    @Select("select *from sys_users where username=#{username}")
     SysUser selectUserByUsername(String username);
+
+
 }

@@ -1,10 +1,12 @@
 package com.cy.pj.sys.service.impl;
 
+import com.cy.pj.common.annotation.RequiredLog;
 import com.cy.pj.common.exception.ServiceException;
 import com.cy.pj.sys.dao.SysUserDao;
 import com.cy.pj.sys.dao.SysUserRoleDao;
 import com.cy.pj.sys.pojo.SysUser;
 import com.cy.pj.sys.service.SysUserService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,7 @@ public class SysUserServiceImpl implements SysUserService {
     @Autowired
     private SysUserRoleDao sysUserRoleDao;
 
+    @RequiredLog(operation = "查询用户信息")
     @Override
     public List<SysUser> findUsers(SysUser entity) {
         return sysUserDao.selectUsers(entity);
@@ -72,8 +75,22 @@ public class SysUserServiceImpl implements SysUserService {
         return rows;
     }
 
+    /**
+     * 更新用户状态
+     * @param id 用户id
+     * @param valid 用户状态
+     * @return
+     * @RequiresPermissions 注解由shiro框架定义，基于此注解定义授权切入点方法
+     * 也就是说用户访问此方法时，需要授权才可访问。shiro框架底层会基于登录用户
+     * 获取登录用户权限（菜单的权限标识），然后判定用户权限中是否包含@RequiresPermissions
+     * 注解中定义的权限标识。
+     */
+    @RequiresPermissions("sys:user:update")
     @Override
     public int validById(Integer id, Integer valid) {
+        //获取登录用户
+        //获取登录用户权限
+        //检测用户权限中是否包含访问此方法的权限
         //这里的admin为假数据，以后需要在加上
         int rows = sysUserDao.validById(id, valid, "admin");
         if (rows == 0)

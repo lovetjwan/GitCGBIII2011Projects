@@ -49,4 +49,13 @@
         where id=#{id}
     </update>
 
+    <!--获取用户的菜单权限标识-->
+    <select id="selectUserPermissions" resultType="java.lang.String">
+        select distinct m.permission
+        from sys_user_roles ur join sys_role_menus rm join sys_menus m
+        on ur.role_id = rm.role_id and rm.menu_id = m.id
+        where ur.user_id = #{userId} and m.permission is not null
+        and trim(m.permission)!=''
+    </select>
+
 </mapper>

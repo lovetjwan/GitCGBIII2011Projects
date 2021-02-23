@@ -16,4 +16,13 @@ logging:
     com.cy: debug
 #shiro
 shiro:
+  # 登录地址
   loginUrl: /login.html
+  sessionManager:
+    sessionIdCookieEnabled: true
+    sessionIdUrlRewritingEnabled: false #不进行url重写（Cookue被禁用以后）
+  rememberMeManager:
+    cookie:
+      maxAge: 3600
+
+
