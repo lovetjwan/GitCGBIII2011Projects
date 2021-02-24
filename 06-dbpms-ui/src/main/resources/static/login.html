@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <style>
+        ul>li{
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>The Login Form</h1>
+    <form>
+        <ul>
+            <li>username:</li>
+            <li><input type="text" name="username"></li>
+            <li>password:</li>
+            <li><input type="password" name="password"></li>
+            <li><input type="button" value="Login" onclick="doAxiosLogin()"></li>
+        </ul>
+    </form>
+    <!--外部静态资源拷贝到项目中以后，一定要对静态static目录-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script>
+        function doLogin() {
+            let username = document.forms[0].username.value;
+            let password = document.forms[0].password.value;
+            console.log("username",username);
+            console.log("password",password);
+            let url = `http://localhost/user/login/${username}/${password}`;
+            location.href = url;//允许直接跨域访问
+        }
+
+        //Ajax原生方式（四个步骤）
+        function doAjaxLogin() { //Ajax技术的入口对象XmlHttpRequest对象
+            debugger;
+            //创建XmlHttpRequest对象
+            let xhr = new XMLHttpRequest();
+            //设置状态监听（可选）,监听客户端与服务端的通讯状态
+            xhr.onreadystatechange=function(){//客户端与服务端通讯状态发生变化时执行此函数
+                if(xhr.readyState==4){//表示客户端与服务端会话结束，并且服务端响应到客户端的数据已接受
+                    if(xhr.status==200){//200表示服务端响应ok，500表示响应异常
+                        // alert(xhr.responseText);//jsonStr(服务端响应到客户端数据)
+                        let jsonObj = JSON.parse(xhr.responseText);
+                        console.log(jsonObj);
+                        alert(jsonObj.message);
+                    }
+                }
+            };
+            //建立链接
+            let username = document.forms[0].username.value;
+            let password = document.forms[0].password.value;
+            let url = `http://localhost/user/login/${username}/${password}`;
+            console.log(url);
+            xhr.open("get",url,true);//true表示异步（启动新线程与服务端通讯）
+            //发送请求
+            xhr.send(null);//get请求send方法不传任何内容或者传null
+            //当请求为异步请求时，一旦执行了send方法，程序会继续向下执行
+            console.log("===send 结束===");
+
+            //说明：
+            //ajax最大优势:按需异步请求,局部监测,提高速度
+            //ajax最大劣势:不可直接跨域访问
+        }
+
+        //JQuery方式的ajax请求,定义了封装ajax操作的相关方法
+        function doJqueryAjaxLogin() {
+            //1.请求参数
+            let username = $("username").val();//val为value的缩写
+            let password = $("password").val();
+            //2.请求url
+            let url = `http://localhost/user/login/${username}/${password}`;
+            //3.发送ajax异步请求(ajax函数为jquery中的一个核心的ajax函数)
+            $.ajax({//封装原生ajax请求的四个步骤
+                method:"get",//默认gets
+                url:url,
+                success(result){ //readyuState==4 && status==200
+                    //result为服务端响应到客户端的结果
+                    console.log(result);
+                    alert(result);
+                }
+            })
+        }
+
+        function doAxiosLogin() {
+            let username = document.forms[0].username.value;
+            let password = document.forms[0].password.value;
+            let url = `http://localhost/user/login/${username}/${password}`;
+            axios.get(url)
+                .then(function (resonse) {//响应ok
+                    console.log(resonse);
+                    alert(resonse.data.message);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+    </script>
+</body>
+</html>

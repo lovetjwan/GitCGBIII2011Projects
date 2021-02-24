@@ -29,6 +29,7 @@ public class SysUserServiceImpl implements SysUserService {
         return sysUserDao.selectUsers(entity);
     }
 
+    @RequiredLog(operation = "查询用户个人信息")
     @Override
     public SysUser findById(Integer id) {
         //查询用户以及用户对应的部门信息
@@ -85,7 +86,6 @@ public class SysUserServiceImpl implements SysUserService {
      * 获取登录用户权限（菜单的权限标识），然后判定用户权限中是否包含@RequiresPermissions
      * 注解中定义的权限标识。
      */
-    @RequiresPermissions("sys:user:update")
     @Override
     public int validById(Integer id, Integer valid) {
         //获取登录用户

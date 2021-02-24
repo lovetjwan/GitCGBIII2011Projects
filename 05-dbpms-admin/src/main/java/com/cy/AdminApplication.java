@@ -3,6 +3,7 @@ package com.cy;
 import com.cy.pj.sys.service.realm.ShiroRealm;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
+import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.RememberMeManager;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.session.mgt.SessionManager;
@@ -11,6 +12,7 @@ import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
@@ -44,11 +46,11 @@ public class AdminApplication {
         //配置/user/login/**开头的资源，可以匿名访问(不用登录就可以访问),其中anon为shiro框架指定的匿名过滤器
         chainDefinition.addPathDefinition("/user/login/**","anon");
         //配置登出操作，logout为shiro提供的一个默认登出过滤器
-        chainDefinition.addPathDefinition("/user/logout","logout");
+//        chainDefinition.addPathDefinition("/user/logout","logout");
         //配置以/**开头的资源必须都要经过认证，其中authc为shiro框架指定的认证过滤器
         //chainDefinition.addPathDefinition("/**", "authc");
         //假如配置了记住我功能,则需将过滤器authc替换为user
-        chainDefinition.addPathDefinition("/**", "user");
+//        chainDefinition.addPathDefinition("/**", "user");
         return chainDefinition;
     }
 
@@ -66,7 +68,7 @@ public class AdminApplication {
         return sessionManager;
     }
 
-    /**
+    /**65
      * 记住我
      * @return
      */
@@ -76,6 +78,10 @@ public class AdminApplication {
         SimpleCookie cookie=new SimpleCookie("rememberMe");
         cookie.setMaxAge(7*24*60*60);//7天
         cManager.setCookie(cookie);
+        //设置加密解密密钥，用于服务器重启后是否更改密钥，或固定密钥
+        //当设置密钥时，服务器重启后客户端不会强制下线，不需要重新登录
+        //当把密钥交给系统去管理，则服务器重启后客户端是需要重新登录的
+        cManager.setCipherKey(Base64.decode("zSyK5Kp6PZAAjlT+eeNMlg=="));
         return cManager;
     }
 
@@ -88,6 +94,13 @@ public class AdminApplication {
     @Bean
     protected CacheManager shiroCacheManager() {
         return new MemoryConstrainedCacheManager();
+    }
+
+    @Bean
+    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator(){
+        DefaultAdvisorAutoProxyCreator proxyCreator = new DefaultAdvisorAutoProxyCreator();
+        proxyCreator.setProxyTargetClass(true);
+        return proxyCreator;
     }
 
 }
