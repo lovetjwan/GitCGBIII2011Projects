@@ -53,7 +53,33 @@
         window.message = $("#message");
         //页面加载完成就去查询
         doGetLogs();
+        //Thread中全选checkbox事件处理
+        $("#checkAll").change(doChangeTBodyCheckBoxState);
+        //tbody中checkbox对象事件注册
+        $("#tbodyId").on("change","input:checkbox",doChangeTheadCheckBoxState);
     });
+
+    //基于tbody中checkbox状态修改thead中checkbox状态
+    function doChangeTheadCheckBoxState() {
+        //1.定义初始化状态
+        let flag = true;
+        //2.获取tbody中所有checkbox对象状态逻辑与的结果
+        $("#tbodyId input:checkbox")
+            .each(function () {
+                flag = flag && $(this).prop("checked");
+            });
+        //3.修改thead中checkbox对象状态
+        $("#checkAll").prop("checked",flag);
+    }
+
+    //修改tbody中checkbox的状态
+    function doChangeTBodyCheckBoxState() {
+        //1.获取thead中checkbox的状态
+        //任何一个类型为checkbox的input元素，都默认有一个checked属性
+        let flag = $(this).prop("checked");
+        //2.修改tbody中checkbox的状态
+        $("#tbodyId input:checkbox").prop("checked",flag);
+    }
 
     //执行客户端删除逻辑
     function doDeleteLogs() {
@@ -97,7 +123,7 @@
 
     function doHandleDeleteOk(result) {
         window.message.html(result.message);
-        window.message.css("color","blue");
+        window.message.css("color","green");
         doGetLogs();//简单刷新
     }
 
@@ -166,6 +192,7 @@
     function doJumpToPage(){
         //1.获取点击对象的class属性值(通过这个值判定这是哪个对象)
         let cls=$(this).prop("class");//$(this)表示被点击的对象
+        console.log(cls);
         //2.基于点击对象修改当前页码值
         //debugger
         let pageCurrent=window.pageCurrent;//????当前页码值
@@ -175,7 +202,7 @@
         }else if(cls=="pre"&&pageCurrent>1){
             pageCurrent--;
         }else if(cls=="next"&&pageCurrent<pageCount){
-            <!-- pageCurrent++; -->
+            pageCurrent++;
         }else if(cls=="last"){
             pageCurrent=pageCount;
         }else{

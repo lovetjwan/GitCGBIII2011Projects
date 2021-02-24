@@ -1,5 +1,6 @@
 package com.cy.pj.sys.service.impl;
 
+import com.cy.pj.common.annotation.RequiredLog;
 import com.cy.pj.common.pojo.Node;
 import com.cy.pj.sys.dao.SysMenuDao;
 import com.cy.pj.sys.pojo.SysMenu;
@@ -28,6 +29,7 @@ public class SysMenuServiceImpl implements SysMenuService {
      * 数据在缓存存放一份，下次再取，从数据库取
      * @return
      */
+    @RequiredLog(operation = "查询菜单列表")
     @Cacheable("sysMenu")
     @Override
     public List<SysMenu> findMenus() {
@@ -37,6 +39,7 @@ public class SysMenuServiceImpl implements SysMenuService {
     }
 
 
+    @RequiredLog(operation = "新增菜单")
     @CacheEvict(value = "sysMenu",allEntries = true)
     @Override
     public int saveMenu(SysMenu entity) {
@@ -49,6 +52,7 @@ public class SysMenuServiceImpl implements SysMenuService {
      * @param entity
      * @return
      */
+    @RequiredLog(operation = "修改菜单")
     @CacheEvict(value = "sysMenu",allEntries = true,beforeInvocation = false)
     @Override
     public int updateMenu(SysMenu entity) {

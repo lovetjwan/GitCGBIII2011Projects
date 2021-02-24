@@ -32,7 +32,6 @@ public class SysLogServiceImpl implements SysLogService {
         //return new AsyncResult<>(返回结果).get();
     }
 
-    @RequiredLog(operation = "删除日志")
     @Override
     public int deleteById(Long... ids) {
         return sysLogDao.deleteById(ids);
