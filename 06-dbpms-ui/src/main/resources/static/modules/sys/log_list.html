@@ -95,11 +95,18 @@
         }
     }
 
-    function doHandleDeleteOk(result) {
-        // doGetLogs();//简单刷新
-        let pageCurrent = window.pageCurrent;
-        let pageCount = window.pageCount;
-        let checkAll = $("#checkAll").prop("checkAll");
+    //处理删除成功以后的操作
+    function doHandleDeleteOk(result){
+        alert(result.message);
+        //doGetLogs();//简单刷新
+        let pageCurrent=window.pageCurrent;
+        let pageCount=window.pageCount;
+        let checkedAll=$("#checkAll").prop("checked");
+        //假如是最后一页，并且是全选状态，当前页面值还是大于1的
+        if(pageCurrent==pageCount&&checkedAll&&pageCurrent>1){
+            window.pageCurrent--;
+        }
+        doGetLogs();
     }
 
     function doGetLogs(){
