@@ -14,15 +14,15 @@
     <form>
         <ul>
             <li>username:</li>
-            <li><input type="text" name="username"></li>
+            <li><input type="text" name="username" id="usernameId"></li>
             <li>password:</li>
-            <li><input type="password" name="password"></li>
-            <li><input type="button" value="Login" onclick="doAxiosLogin()"></li>
+            <li><input type="password" name="password" id="passwordId"></li>
+            <li><input type="button" value="Login" onclick="doJqueryAjaxLogin()"></li>
         </ul>
     </form>
     <!--外部静态资源拷贝到项目中以后，一定要对静态static目录-->
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/axios.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/axios.min.js"></script>
     <script>
         function doLogin() {
             let username = document.forms[0].username.value;
@@ -68,8 +68,8 @@
         //JQuery方式的ajax请求,定义了封装ajax操作的相关方法
         function doJqueryAjaxLogin() {
             //1.请求参数
-            let username = $("username").val();//val为value的缩写
-            let password = $("password").val();
+            let username=$("#usernameId").val();//val为value的缩写
+            let password=$("#passwordId").val();
             //2.请求url
             let url = `http://localhost/user/login/${username}/${password}`;
             //3.发送ajax异步请求(ajax函数为jquery中的一个核心的ajax函数)
@@ -79,7 +79,8 @@
                 success(result){ //readyuState==4 && status==200
                     //result为服务端响应到客户端的结果
                     console.log(result);
-                    alert(result);
+                    alert(result.message);
+                    location.href = "default.html";
                 }
             })
         }
