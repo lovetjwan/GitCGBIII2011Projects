@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-
-<div class="container">
-    <h1>The Index Page</h1>
+<div class="log">
+    <h3>日志管理</h3>
     <div>
         <button onclick="doGetLogs()" class="btn  btn-primary">刷新</button>
         <button onclick="doDeleteLogs()" class="btn  btn-danger">删除</button>
-        <span id="message" style="font-size: 20px"></span>
     </div>
     <div>
         <table class="table">
@@ -32,27 +22,13 @@
             </tbody>
         </table>
     </div>
-    <div id="pageId">
-        <span class="total">总记录数(1)</span>
-        <span class="pages">总页数(1)</span>
-        <span class="pageNum">当前页(1)</span>
-        <button class="first">首页</button>
-        <button class="pre">上一页</button>
-        <button class="next">下一页</button>
-        <button class="last">尾页</button>
-    </div>
+    <div class="pageination"></div>
 </div>
-<script src="js/jquery.min.js"></script>
 <script>
-
     //页面加载后执行
     $(function () {
-        //注册分页操作点击事件
-        $("#pageId").on("click",".first,.pre,.next,.last",doJumpToPage);
-        //消息提醒
-        window.message = $("#message");
         //页面加载完成就去查询
-        doGetLogs();
+        $(".pageination").load("common/page.html",doGetLogs);
         //Thread中全选checkbox事件处理
         $("#checkAll").change(doChangeTBodyCheckBoxState);
         //tbody中checkbox对象事件注册
@@ -94,8 +70,6 @@
         })
         //1.4判定是否有选中记录
         if (checkedIds.length == 0){
-            window.message.html("请先选中");
-            window.message.css("color","red");
             return;
         }
         //2.构建请求参数
@@ -122,9 +96,10 @@
     }
 
     function doHandleDeleteOk(result) {
-        window.message.html(result.message);
-        window.message.css("color","green");
-        doGetLogs();//简单刷新
+        // doGetLogs();//简单刷新
+        let pageCurrent = window.pageCurrent;
+        let pageCount = window.pageCount;
+        let checkAll = $("#checkAll").prop("checkAll");
     }
 
     function doGetLogs(){
@@ -151,16 +126,30 @@
     }
     function doHandleQueryOk(result){
         //初始化日志列表信息
+        doInitLogTitleInfo();
         doInitLogListInfo(result.data.list);
         //初始化日志分页信息
         doInitLogPageInfo(result.data);
     }
+
+    function doInitLogTitleInfo() {
+        //prop为query中的一个操作元素属性的函数
+        //语法prop(属性名[,属性值])假如只有属性名，则表示取值
+        $("#checkAll").prop("checked",false);
+    }
+
     //初始化日志列表
     function doInitLogListInfo(list){
         //1.获取tbody对象,并清空原有内容
         let tBody=$("#tbodyId");
         tBody.empty();
         //2.迭代list集合追加新内容
+        if (list.length == 0){
+            let tds = $("thead").find("tr>th");
+            let tr = `<tr><td colspan=$(tds.length)>没有找到对应记录</td></tr>`;
+            tBody.html(tr);
+            return;
+        }
         list.forEach((item)=>{//item代表集合中的一个元素
             tBody.append(doCreateRow(item));
         })
@@ -176,46 +165,4 @@
                    <td>${item.createdTime}</td>
                   </tr>`
     }
-    //var pageCurrent;
-    // var pageCount;
-    //初始化分页信息
-    function doInitLogPageInfo(data){
-        console.log("data",data);
-        $(".total").html(`总记录数(${data.total})`);
-        $(".pages").html(`总页数(${data.pages})`);
-        $(".pageNum").html(`当前页(${data.pageNum})`);
-        //存储当前页码值和总页数
-        window.pageCurrent=data.pageNum;
-        window.pageCount=data.pages;
-    }
-    //分页按钮事件处理函数
-    function doJumpToPage(){
-        //1.获取点击对象的class属性值(通过这个值判定这是哪个对象)
-        let cls=$(this).prop("class");//$(this)表示被点击的对象
-        console.log(cls);
-        //2.基于点击对象修改当前页码值
-        //debugger
-        let pageCurrent=window.pageCurrent;//????当前页码值
-        let pageCount=window.pageCount;//???总页数
-        if(cls=="first"){
-            pageCurrent=1;
-        }else if(cls=="pre"&&pageCurrent>1){
-            pageCurrent--;
-        }else if(cls=="next"&&pageCurrent<pageCount){
-            pageCurrent++;
-        }else if(cls=="last"){
-            pageCurrent=pageCount;
-        }else{
-            return;
-        }
-        //3.基于新的页码值重新执行分页查询
-        console.log("pageCurrent",pageCurrent);
-        //3.1存储新页码值
-        window.pageCurrent=pageCurrent;
-        //3.2重新查询
-        doGetLogs();
-    }
-
 </script>
-</body>
-</html>

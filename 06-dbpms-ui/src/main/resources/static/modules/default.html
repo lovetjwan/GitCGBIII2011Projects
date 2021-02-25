@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div><h1>动吧权限管理子系统</h1></div>
+        <div class="btn-menu">
+            <button id="btn-log">日志管理</button>
+            <button id="btn-menu">菜单管理</button>
+            <button id="btn-role">角色管理</button>
+            <button id="btn-user">用户管理</button>
+        </div>
+    </div>
+    <div class="content">
+        <!--<fieldset>-->
+            <!--<legend>模块导航</legend>-->
+        <!--</fieldset>-->
+    </div>
+    <div class="footer">
+        <span><h3>created by 2021</h3></span>
+    </div>
+</div>
+<!--记住所有js引入都放在body结束位置的上面-->
+<script src="../js/jquery.min.js"></script>
+<script>
+    $("#btn-log").click(function () {
+        $(".content").load("sys/log_list.html");
+
+    })
+</script>
+</body>
+</html>

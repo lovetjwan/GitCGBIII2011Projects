@@ -1,0 +1,53 @@
+<div id="pageId">
+    <span class="total">总记录数(1)</span>
+    <span class="pages">总页数(1)</span>
+    <span class="pageNum">当前页(1)</span>
+    <button class="first">首页</button>
+    <button class="pre">上一页</button>
+    <button class="next">下一页</button>
+    <button class="last">尾页</button>
+</div>
+
+<script>
+    //注册分页操作点击事件
+    $("#pageId").on("click",".first,.pre,.next,.last",doJumpToPage);
+    //var pageCurrent;
+    // var pageCount;
+    //初始化分页信息
+    function doInitLogPageInfo(data){
+        console.log("data",data);
+        $(".total").html(`总记录数(${data.total})`);
+        $(".pages").html(`总页数(${data.pages})`);
+        $(".pageNum").html(`当前页(${data.pageNum})`);
+        //存储当前页码值和总页数
+        window.pageCurrent=data.pageNum;
+        window.pageCount=data.pages;
+    }
+    //分页按钮事件处理函数
+    function doJumpToPage(){
+        //1.获取点击对象的class属性值(通过这个值判定这是哪个对象)
+        let cls=$(this).prop("class");//$(this)表示被点击的对象
+        console.log(cls);
+        //2.基于点击对象修改当前页码值
+        //debugger
+        let pageCurrent=window.pageCurrent;//????当前页码值
+        let pageCount=window.pageCount;//???总页数
+        if(cls=="first"){
+            pageCurrent=1;
+        }else if(cls=="pre"&&pageCurrent>1){
+            pageCurrent--;
+        }else if(cls=="next"&&pageCurrent<pageCount){
+            pageCurrent++;
+        }else if(cls=="last"){
+            pageCurrent=pageCount;
+        }else{
+            return;
+        }
+        //3.基于新的页码值重新执行分页查询
+        console.log("pageCurrent",pageCurrent);
+        //3.1存储新页码值
+        window.pageCurrent=pageCurrent;
+        //3.2重新查询
+        doGetLogs();
+    }
+</script>
